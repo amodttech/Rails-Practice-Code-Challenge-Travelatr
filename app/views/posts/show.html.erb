@@ -1,17 +1,17 @@
-<h1><%= @blogger.name %></h1>
+<h1><%= @post.title %></h1>
 
 <br> 
+<p>Author:
+<p><%= link_to @post.blogger.name, blogger_path(@post.blogger.id)%>
 
-<ul>
-<% @blogger.posts.each do |post| %>
-<li><%= post.title %> | Likes: <%= post.likes %>
-</li>
-<% end %>
-</ul>
+<p>Destination:
+<p><%= link_to @post.destination.name, destination_path(@post.destination.id)%>
 
-<hr>
+<p>Likes:
+<p><%= @post.likes %>
 
-<% if @blogger.posts.count > 0  %>
-<p>Most Liked Post</p>
-<%= link_to @blogger.most_likes.title, post_path(@blogger.most_likes.id) %>
+
+<%= form_for @post do |f| %>
+<%= f.hidden_field :likes, value: @post.add_like %>
+<%= f.submit %>
 <% end %>

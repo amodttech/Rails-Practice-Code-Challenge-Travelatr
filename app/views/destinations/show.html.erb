@@ -1,0 +1,27 @@
+<h1><%= @destination.name %></h1>
+
+<br> 
+<% @destination.recent.each do |dest| %>
+<p><h3><%= dest.title %></h3>
+<p><%= dest.content %>
+<% end %>
+
+
+
+<ul>
+<% @destination.posts.each do |post| %>
+<li><%= post.title %> | Likes: <%= post.likes %>
+</li>
+<% end %>
+</ul>
+
+<hr>
+
+<% if @destination.posts.count > 0  %>
+<p>Most Liked Post</p>
+<%= link_to @destination.most_likes.title, post_path(@destination.most_likes.id) %>
+<% end %>
+
+<p>Average age of bloggers
+<p>
+<%= @destination.average %>
